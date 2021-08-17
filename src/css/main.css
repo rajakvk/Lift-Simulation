@@ -1,0 +1,15 @@
+body { display: flex; flex-direction: column; min-height: 100vh; text-align: center; }
+main { flex-grow: 1; }
+footer { text-align: center; }
+
+.building { position: relative ;}
+.floor { text-align: left; border-bottom: 1px solid; min-height: 100px; position: relative; }
+.floor:first-child { border-top: 1px solid; }
+.board { display: block; position: absolute; bottom: 0; right: 0 }
+.lift { transition: 1s; position: absolute; left: 100px; bottom: 0; width: 50px; height: 100px; background-color: lightblue; }
+.button-container { display: flex; flex-direction: column; }
+.button { cursor: pointer; width: 50px; padding: 10px; color: white; border: none; }
+.button-up { background-color: green; margin-bottom: 5px; }
+.button-down { background-color: orange; }
+.floor:first-child .button-up { display: none; }
+.floor:last-child .button-down { display: none; }
