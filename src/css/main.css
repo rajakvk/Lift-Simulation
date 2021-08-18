@@ -1,9 +1,18 @@
+button, input, select, textarea { font-family: inherit; font-size: 100%;  width : 150px;
+  padding: 0; margin: 0; box-sizing: border-box;}
+
 body { display: flex; flex-direction: column; min-height: 100vh; text-align: center; }
 main { flex-grow: 1; }
 footer { text-align: center; }
 
+.simulation-config { margin-bottom: 20px; }
+.simulation-config fieldset { padding: 20px; text-align: left; font-size: 16px; }
+.simulation-config legend { font-size: 22px; }
+.simulation-config button { border-radius: 5px; border: none; padding: 10px; cursor: pointer; background-color: black; color: white;}
+.simulation-config fieldset label { margin-right: 10px; }
+.simulation-config input { padding: 5px; margin-left: 10px; }
 .building { position: relative ;}
-.floor { text-align: left; border-bottom: 1px solid; min-height: 100px; position: relative; }
+.floor { text-align: left; border-bottom: 1px solid; min-height: 99px; position: relative; }
 .floor:first-child { border-top: 1px solid; }
 .board { display: block; position: absolute; bottom: 0; right: 0 }
 .lift { transition: 1s; position: absolute; left: 100px; bottom: 0; width: 50px; height: 100px; background-color: lightblue; }

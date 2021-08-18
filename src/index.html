@@ -14,45 +14,17 @@
     <h1>Lift Simulation Demo</h1>
   </header>
   <main>
-    <div class="building">
-      <div class="floor-container">
-        <div class="floor floor-1">
-          <div class="button-container">
-            <button data-floor="4" data-direction="up" class="button button-up">Up</button>
-            <button data-floor="4" data-direction="down" class="button button-down">Down</button>
-          </div>
-          <span class="board">Floor 4</span>
-        </div>
-        <div class="floor floor-1">
-          <div class="button-container">
-            <button data-floor="3" data-direction="up" class="button button-up">Up</button>
-            <button data-floor="3" data-direction="down" class="button button-down">Down</button>
-          </div>
-          <span class="board">Floor 3</span>
-        </div>
-        <div class="floor floor-1">
-          <div class="button-container">
-            <button data-floor="2" data-direction="up" class="button button-up">Up</button>
-            <button data-floor="2" data-direction="down" class="button button-down">Down</button>
-          </div>
-          <span class="board">Floor 2</span>
-        </div>
-        <div class="floor floor-1">
-          <div class="button-container">
-            <button data-floor="1" data-direction="up" class="button button-up">Up</button>
-            <button data-floor="1" data-direction="down" class="button button-down">Down</button>
-          </div>
-          <span class="board">Floor 1</span>
-        </div>
-      </div>
-      <div class="lift"></div>
-    </div>
+    <div id="app">React Loading...</div>
   </main>
   <footer>
     <p>The contents of this website are deployed from this <a href="https://github.com/rajakvk/Lift-Simulation">sourced
         repo</a></p>
   </footer>
-  <script src="js/main.js"></script>
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel" src="js/main.js"></script>
+
 </body>
 
 </html>
