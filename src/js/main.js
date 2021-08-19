@@ -12,12 +12,12 @@ const Configuration = ({buildFloors, setLifts}) => {
         <fieldset>
           <legend>Simulation Configuration</legend>
           <label htmlFor="floors">
-            Floors:
+            Floors (2-50):
             <input ref={floorsRef} min="2" max="50" type="number" name="floors" id="floors" defaultValue="4" />
           </label>
           <label htmlFor="lifts">
-            Lifts:
-            <input disabled ref={liftsRef} type="number" name="lifts" id="lifts" defaultValue="1" />
+            Lifts (1-4):
+            <input ref={liftsRef} min="1" max="4" type="number" name="lifts" id="lifts" defaultValue="2" />
           </label>
           <button onClick={build}>Rebuild</button>
         </fieldset>
@@ -26,17 +26,26 @@ const Configuration = ({buildFloors, setLifts}) => {
   )
 };
 
-const moveLift = (e) => {
-  const lift = document.querySelector('.lift');
-  const floor = e.target.dataset['floor'];
-  const direction = e.target.dataset['direction'];
-  const multiplier = Number(floor-1) * 100;
-  lift.style.cssText = `bottom: ${multiplier}px;`;
-}
-
-const Building = ({heading, floors, lifts}) => {
+const Building = ({heading, floors, lifts, setLiftPosition}) => {
   (floors = floors).shift();
   (floors = floors).reverse();
+  const moveLift = (e) => {
+    const liftElements = [];
+    lifts.map(item => {
+      liftElements[item+1] = document.querySelector('[data-lift="'+(item+1)+'"]');
+    });
+    const floor = e.target.dataset['floor'];
+    const direction = e.target.dataset['direction'];
+    const multiplier = Number(floor-1) * 100;
+    const currentLift =  Math.floor(Math.random() * ((lifts.length+1) - 1) + 1);
+    const updatedValue = {};
+    updatedValue[currentLift] = Number(floor);
+    setLiftPosition( (prevState)=>({
+      ...prevState,
+      ...updatedValue
+    }));
+    liftElements[currentLift].style.cssText = `bottom: ${multiplier}px;`;
+  };
   return (
     <section>
       <h2>{heading}</h2>
@@ -62,7 +71,7 @@ const Building = ({heading, floors, lifts}) => {
           {
             lifts.map(item => {
               return (
-                <div className="lift"></div>
+                <div className="lift" data-lift={`${item+1}`}></div>
               )
             })
           }
@@ -75,15 +84,22 @@ const Building = ({heading, floors, lifts}) => {
 const Simulation = () => {
   const { useState } = React;
   const [floors, setFloors] = useState(5);
-  const [lifts, setLifts] = useState(1);
+  const [lifts, setLifts] = useState(2);
+  const [liftPosition, setLiftPosition] = useState({
+    1:1,
+    2:1,
+    3:1,
+    4:1
+  });
   return (
     <>
       <Configuration
         buildFloors={setFloors}
         setLifts={setLifts}
-      />
+        />
       <Building 
         heading="Building" 
+        setLiftPosition={setLiftPosition}
         floors={[ ...Array(floors).keys() ] } 
         lifts={[ ...Array(lifts).keys() ] }
       />
